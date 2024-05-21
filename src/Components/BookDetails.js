@@ -1,9 +1,10 @@
-// src/components/BookDetails.js
+// BookDetails.js
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const BookDetails = () => {
+const BookDetails = ({ price }) => {
     const { id } = useParams();
     const [book, setBook] = useState(null);
 
@@ -28,6 +29,7 @@ const BookDetails = () => {
             <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} className="mx-auto mb-4 rounded-lg shadow-md" />
             <h2 className="text-2xl font-bold mb-2">{book.volumeInfo.title}</h2>
             <h3 className="text-lg font-semibold mb-2">{book.volumeInfo.authors?.join(', ')}</h3>
+            <p className="text-sm text-gray-600 mb-2">Price: Rs. {price}</p> {/* Display the price here */}
             {genres && <p className="text-gray-600 mb-4">Genres: {genres}</p>}
             {book.volumeInfo.description ? (
                 <div className="text-base leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: book.volumeInfo.description }} />

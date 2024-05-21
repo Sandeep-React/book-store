@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import BookList from './Components/BookList';
@@ -8,13 +8,19 @@ import Checkout from './Components/Checkout';
 import { CartProvider } from './Contexts/CartContext';
 
 function App() {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = (query) => {
+        setSearchQuery(query);
+    };
+
     return (
         <CartProvider>
             <BrowserRouter>
                 <div className="App">
-                    <Header />
+                    <Header handleSearch={handleSearch} />
                     <Routes>
-                        <Route path="/" element={<BookList />} />
+                        <Route path="/" element={<BookList searchQuery={searchQuery} />} />
                         <Route path="/book/:id" element={<BookDetails />} />
                         <Route path="/cart" element={<ShoppingCart />} />
                         <Route path="/checkout" element={<Checkout />} />
