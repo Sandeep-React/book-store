@@ -5,15 +5,13 @@ import SearchBar from './SearchBar';
 const Header = ({ handleSearch }) => {
     return (
         <header className="bg-blue-500 text-white p-4">
-            <nav className="flex justify-between container mx-auto">
-                <div>
-                    <Link to="/" className="mr-4 hover:underline">Home</Link>
-                    <Link to="/cart" className="hover:underline">Cart</Link>
-                </div>
-                <div>
+            <div className="container mx-auto flex justify-between items-center">
+                <Link to="/" className="text-xl font-bold hover:underline">Bookstore</Link>
+                <div className="flex items-center">
                     <SearchBar handleSearch={handleSearch} />
+                    <Link to="/cart" className="ml-4 hover:underline">Cart</Link>
                 </div>
-            </nav>
+            </div>
         </header>
     );
 };

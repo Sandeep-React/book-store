@@ -8,7 +8,7 @@ import Checkout from './Components/Checkout';
 import { CartProvider } from './Contexts/CartContext';
 
 function App() {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState('fiction'); // Default genre
 
     const handleSearch = (query) => {
         setSearchQuery(query);
