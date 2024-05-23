@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { CartContext } from '../Contexts/CartContext';
+import AuthContext from '../Contexts/AuthContext';
 
 const Header = ({ handleSearch }) => {
     const { cartItems } = useContext(CartContext);
+    const { currentUser, loginWithGoogle, logout } = useContext(AuthContext);
 
     // Calculate total items in the cart
     const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -20,6 +22,16 @@ const Header = ({ handleSearch }) => {
                 </div>
                 <div>
                     <SearchBar handleSearch={handleSearch} />
+                </div>
+                <div>
+                    {currentUser ? (
+                        <>
+                            <span className="mr-4">Hello, {currentUser.displayName}</span>
+                            <button onClick={logout} className="hover:underline">Logout</button>
+                        </>
+                    ) : (
+                        <button onClick={loginWithGoogle} className="hover:underline">Login with Google</button>
+                    )}
                 </div>
             </nav>
         </header>
