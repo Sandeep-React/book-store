@@ -16,14 +16,20 @@ const BookList = ({ searchQuery }) => {
     }, [searchQuery]);
 
     return (
-        <div>
-            <h2>Book List</h2>
+        <div className="container mx-auto p-4">
+            <h2 className="text-2xl font-bold mb-4">Book List</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {books.map((book) => (
                     <div key={book.id} className="bg-white shadow-md rounded-lg overflow-hidden p-2">
-                        <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} className="w-full h-32 object-cover" />
+                        <div className="h-64 flex items-center justify-center"> {/* Center the image */}
+                            <img
+                                src={book.volumeInfo.imageLinks?.thumbnail}
+                                alt={book.volumeInfo.title}
+                                className="max-w-full max-h-full object-contain"
+                            />
+                        </div>
                         <div className="p-2">
-                            <h3 className="text-sm font-semibold mb-1 mx-4">{book.volumeInfo.title}</h3>
+                            <h3 className="text-sm font-semibold mb-1">{book.volumeInfo.title}</h3>
                             <p className="text-xs text-gray-600 mb-1">{book.volumeInfo.authors?.join(', ')}</p>
                             <p className="text-xs text-gray-600 mb-1">Price: Rs. {book.price}</p>
                             <div className="flex justify-between items-center">
