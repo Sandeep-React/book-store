@@ -5,12 +5,11 @@ import BookList from './Components/BookList';
 import BookDetails from './Components/BookDetails';
 import ShoppingCart from './Components/ShoppingCart';
 import Checkout from './Components/Checkout';
-import Login from './Components/Login'; // Import Login component
 import { CartProvider } from './Contexts/CartContext';
-import { AuthProvider } from './Contexts/AuthContext'; // Import AuthProvider
+import { AuthProvider } from './Contexts/AuthContext';
 
 function App() {
-    const [searchQuery, setSearchQuery] = useState('fiction'); // Default genre
+    const [searchQuery, setSearchQuery] = useState('fiction');
 
     const handleSearch = (query) => {
         setSearchQuery(query);
@@ -27,7 +26,6 @@ function App() {
                             <Route path="/book/:id" element={<BookDetails />} />
                             <Route path="/cart" element={<ShoppingCart />} />
                             <Route path="/checkout" element={<Checkout />} />
-                            <Route path="/login" element={<Login />} /> {/* Add login route */}
                         </Routes>
                     </div>
                 </BrowserRouter>

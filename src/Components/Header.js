@@ -8,7 +8,6 @@ const Header = ({ handleSearch }) => {
     const { cartItems } = useContext(CartContext);
     const { currentUser, loginWithGoogle, logout } = useContext(AuthContext);
 
-    // Calculate total items in the cart
     const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
     return (
@@ -17,7 +16,7 @@ const Header = ({ handleSearch }) => {
                 <div>
                     <Link to="/" className="mr-4 hover:underline">Home</Link>
                     <Link to="/cart" className="hover:underline">
-                        Cart ({totalItems}) {/* Display total items here */}
+                        Cart ({totalItems})
                     </Link>
                 </div>
                 <div>

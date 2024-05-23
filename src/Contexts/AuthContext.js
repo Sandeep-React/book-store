@@ -1,24 +1,27 @@
-// src/Contexts/AuthContext.js
 import React, { createContext, useState, useEffect } from 'react';
-import { auth, googleProvider } from '../firebase.';
+// import { auth, firestore } from '../firebase';
+import { auth } from '../firebase.';
+import firebase from 'firebase/compat/app';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
         });
+
         return () => unsubscribe();
     }, []);
 
     const loginWithGoogle = async () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
         try {
-            await auth.signInWithPopup(googleProvider);
+            await auth.signInWithPopup(provider);
         } catch (error) {
-            console.error('Error logging in with Google:', error);
+            console.error('Error during Google login:', error);
         }
     };
 
@@ -26,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         try {
             await auth.signOut();
         } catch (error) {
-            console.error('Error logging out:', error);
+            console.error('Error during logout:', error);
         }
     };
 
@@ -37,4 +40,5 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
+export { AuthProvider };
 export default AuthContext;
