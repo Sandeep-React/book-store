@@ -1,9 +1,10 @@
-//ShoppingCart.js
 import React, { useContext } from 'react';
 import { CartContext } from '../Contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
     const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleQuantityChange = (bookId, quantity) => {
         if (quantity <= 0) {
@@ -15,7 +16,7 @@ const ShoppingCart = () => {
 
     // Calculate total items and total price
     const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    const totalPrice = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0); // Corrected calculation
+    const totalPrice = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
     return (
         <div className="container mx-auto p-4">
@@ -51,7 +52,10 @@ const ShoppingCart = () => {
                     <div className="mt-4">
                         <p>Total Items: {totalItems}</p>
                         <p>Total Price: Rs. {totalPrice.toFixed(2)}</p> {/* Fixed to 2 decimal places */}
-                        <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md" onClick={() => console.log("Proceed to Checkout")}>
+                        <button 
+                            className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md" 
+                            onClick={() => navigate('/checkout')} // Navigate to the Checkout page
+                        >
                             Proceed to Checkout
                         </button>
                     </div>
