@@ -72,11 +72,20 @@ export const CartProvider = ({ children }) => {
         });
     };
 
+    const clearCart = () => {
+        setCartItems([]);
+        if (user) {
+            const cartRef = firestore.collection('carts').doc(user.uid);
+            cartRef.set({ items: [] });
+        }
+    };
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart }}>
             {children}
         </CartContext.Provider>
     );
 };
 
 export default CartContext;
+

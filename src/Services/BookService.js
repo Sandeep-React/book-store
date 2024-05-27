@@ -3,10 +3,10 @@ import axios from 'axios';
 
 const API_URL = 'https://www.googleapis.com/books/v1/volumes';
 
-export const fetchBooks = async (query = 'fiction') => {
+export const fetchBooks = async (query = 'fiction', maxResults = 20) => {
     try {
         const response = await axios.get(API_URL, {
-            params: { q: query }
+            params: { q: query, maxResults: maxResults }
         });
         const books = response.data.items.map(book => ({
             ...book,

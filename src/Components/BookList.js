@@ -9,8 +9,15 @@ const BookList = ({ searchQuery }) => {
 
     useEffect(() => {
         const getBooks = async () => {
-            const data = await fetchBooks(searchQuery);
-            setBooks(data);
+            if (searchQuery.trim() === '') {
+                // If the search query is empty, you can either set a default book list or skip fetching
+                // For this example, let's assume you have a function `fetchDefaultBooks`
+                const data = await fetchBooks(); // Call fetchBooks without searchQuery to get default books
+                setBooks(data);
+            } else {
+                const data = await fetchBooks(searchQuery);
+                setBooks(data);
+            }
         };
         getBooks();
     }, [searchQuery]);
