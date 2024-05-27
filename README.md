@@ -5,10 +5,12 @@ This is a book store application built with React where users can browse books, 
 
 ## Features
 - Browse books based on a search query.
+- Uses google book API to receive book data.
 - Add books to a shopping cart.
 - View cart and proceed to checkout.
 - User authentication with Google.
 - Persistent cart items using Firestore.
+- Tailwind CSS for responsive Design.
 
 ## Project Structure
 The project structure is as follows:
